@@ -1,10 +1,10 @@
-# 🎧 Group 7 — Spotify Genre Lab: Introduction to Machine Learning Project
+# Spotify Genre Lab: Introduction to Machine Learning Project
 
 A student machine-learning study that compares **three classifiers** (Logistic Regression, Random Forest, K-Nearest Neighbors) on Spotify track genre prediction, wrapped in a **Spotify-themed Streamlit dashboard**. Search a song, press **Listen on Spotify**, see the audio features the model hears, and watch the selected model try to guess its genre, with diagrams that explain why. The study itself (cross-validation, held-out test set, confusion matrices) is on the other tabs.
 
 > Academic demonstration. This is **not** an official Spotify service and not a production genre-recognition system.
 
-## Screenshots
+## Explore the System:
 
 **Pick a track.** Search a song or artist, or shuffle popular songs.
 
@@ -33,7 +33,7 @@ A student machine-learning study that compares **three classifiers** (Logistic R
 </tr>
 </table>
 
-## Developers and Researchers
+## Developers and Researchers:
 
 - **Group 7**
 - Santos
@@ -42,13 +42,13 @@ A student machine-learning study that compares **three classifiers** (Logistic R
 
 **Contact:** [@Krdusk](https://github.com/Krdusk) on GitHub, or open an [issue](https://github.com/Krdusk/Spotify-Genre-Classification/issues).
 
-## Project Objective
+## Project Objective:
 
 The goal is to test Logistic Regression, Random Forest, and K-Nearest Neighbors on the same Spotify track dataset. The models are compared using five-fold cross-validation. The model with the highest mean validation macro F1 is selected, and all three models are also evaluated on the same held-out test set.
 
 This is an academic demonstration, not an official Spotify service or a production-ready genre-recognition system.
 
-## Results
+## Results:
 
 The selected model is Random Forest. Selection is based on cross-validation macro F1, not the held-out test scores.
 
@@ -60,7 +60,7 @@ The selected model is Random Forest. Selection is based on cross-validation macr
 
 The test scores describe this dataset and should not be interpreted as expected performance on other Spotify tracks.
 
-## How it works
+## How it works:
 
 ```mermaid
 flowchart LR
@@ -78,7 +78,7 @@ flowchart LR
 2. **Study.** All three models use the same split and the same 5 folds. The winner is chosen by **cross-validation macro F1**, not by the test score. All three are then scored on the same held-out tracks. Tracks sharing an ID stay in the same split.
 3. **Dashboard.** Opening the app loads the saved model and results. **It does not retrain.**
 
-### The Pick a track tab
+### The Pick a Track Tab:
 
 **Listen on Spotify.** The button renders Spotify's embedded player (via Spotify's iFrame API) and calls `play()`. Autoplay depends on your browser and Spotify session: full songs need you to be logged in to Spotify in that browser, otherwise you hear a preview, and some browsers block autoplay, in which case press play. If the iFrame API cannot load, a plain embedded player is shown.
 
@@ -88,7 +88,7 @@ flowchart LR
 4. The scoreboard counts only unseen picks and shows the model's expected test accuracy beside them. A pick matches if the prediction equals any of the track's labels. A few songs are an anecdote, not a result.
 5. The audio features come from the bundled dataset, not the Spotify API, because Spotify restricted audio-feature access for new apps in late 2024 (see Spotify's developer docs). The embedded player is Spotify's public embed and needs an internet connection. **Only the selected model is saved**, so live predictions come from Random Forest. The other two appear as their held-out test scores.
 
-### Dashboard guide
+### Dashboard Guide:
 
 - **Pick a track**: search, listen, predict and see the diagrams.
 - **Compare**: cross-validation comparison, model selection, held-out test comparison, confusion matrices, and the *Why this model?* evidence and verdict.
@@ -96,7 +96,7 @@ flowchart LR
 - **Manual entry**: type the 15 features yourself and get a prediction.
 - **Dataset**: data cleaning, the feature list, genre counts and data-quality notes.
 
-## Run the application
+## Run the Application:
 
 Requirements: Python 3.12 (the app was developed on Windows and also tested on Linux with Python 3.12).
 
@@ -120,7 +120,7 @@ python3.12 -m venv .venv
 
 Open `http://localhost:8501`. Keep the terminal open while using the app and press Ctrl+C to stop it.
 
-**Run in VS Code**
+**Run in VS Code:**
 
 1. Install [Python 3.12](https://www.python.org/downloads/) (tick *Add python.exe to PATH*) and [VS Code](https://code.visualstudio.com/) with the *Python* extension.
 2. In VS Code: **File → Open Folder…** and choose the project folder (the one containing `app/` and `requirements.txt`).
@@ -138,7 +138,7 @@ Open `http://localhost:8501`. Keep the terminal open while using the app and pre
    Your browser opens `http://localhost:8501`. If it does not, open that address yourself.
 7. Stop it with **Ctrl+C** in the terminal. Next time, only step 6 is needed (or double-click `start_app.bat`).
 
-**Troubleshooting**
+**Troubleshooting:**
 
 - *Unpickle / version warning:* install from `requirements.txt`. The saved model was built with the pinned scikit-learn version.
 - *Autoplay does not start:* browsers can block autoplay and full songs need a Spotify login in the same browser. Press play on the player. Without a login you hear a 30-second preview.
@@ -149,11 +149,11 @@ Open `http://localhost:8501`. Keep the terminal open while using the app and pre
 - *Port 8501 is busy:* add `--server.port 8502` to the run command.
 - *Search finds nothing:* the dataset covers about 90,000 tracks, mostly international. Tagalog and OPM songs are rare (for example Zack Tabudlo, Adie, Kamikazee). Untick *Only tracks the models never saw* to search all tracks.
 
-## Static web preview (no install)
+## Static Web Preview (no install):
 
 `documentation/web_preview.html` is a self-contained snapshot of the Pick a track experience (search, shuffle, listen, diagrams) plus the model-comparison diagrams (cross-validation, test metrics, per-genre F1, confusion matrices and a verdict). It holds precomputed Random Forest predictions for every unique track, so you can open it by double-clicking in any browser, with no Python. It is a snapshot generated from `models/spotify_genre_pipeline.joblib` and is not part of the app runtime.
 
-## Dataset and Preparation
+## Dataset and Preparation:
 
 The supplied CSV contains 114,000 rows, 20 columns, and 114 genre labels. Exact duplicate rows are removed, leaving 113,550 records. No genre labels are missing or blank. The model uses 15 numeric or Boolean track features:
 
@@ -165,7 +165,7 @@ Tracks with the same track ID are kept together when making the training and tes
 
 The project team has confirmed permission to redistribute the included CSV. The original dataset citation, source URL, publisher, and license information have not yet been recorded in the project. Add those details to `data/original/source_note.md` before academic submission.
 
-## Project structure
+## Project Structure:
 
 ```
 project-root/
@@ -186,7 +186,7 @@ This project is maintained by **Group 7**. The `data/original/`, `data/processed
 
 Inside `app/`: `streamlit_app.py` (tabs and study pages), `picker.py` (Pick a track), `justify.py` (why-this-model evidence), `charts.py` (bar and heatmap helpers) and `theme.py` (colours and layout). `documentation/` also holds `screenshots/` and `web_preview.html`. The hidden `.streamlit/config.toml` sets the dark Spotify theme.
 
-## Limitations
+## Limitations:
 
 - The task distinguishes among 114 genre labels, and model performance is modest.
 - Some track IDs have more than one genre label in the source data.
