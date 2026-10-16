@@ -35,7 +35,6 @@ A student machine-learning study that compares **three classifiers** (Logistic R
 
 ## Developers and Researchers:
 
-- **Group 7**
 - Santos
 - Pedido
 - Lopez
